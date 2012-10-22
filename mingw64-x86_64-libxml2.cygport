@@ -1,0 +1,28 @@
+CROSS_HOST="x86_64-w64-mingw32"
+ORIG_PN="libxml2"
+inherit gnome2 cross
+
+NAME="mingw64-x86_64-libxml2"
+VERSION=2.8.0
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="GNOME XML library for Win64 toolchain"
+DESCRIPTION="This package does NOT contain cygwin binaries.  Instead, it
+contains msvcrt-linked binaries (aka 'mingw').  It is for use with the
+mingw64-x86_64-gcc cross compiler, and installs into the
+/usr/x86_64-w64-mingw32/sys-root/mingw/{lib,include} directories."
+HOMEPAGE="http://xmlsoft.org/"
+SRC_URI="ftp://xmlsoft.org/libxml2/${ORIG_PN}-${PV}.tar.gz"
+
+DIFF_EXCLUDES="xmlversion.h setup.py"
+
+CYGCONF_ARGS="--enable-ipv6 --without-python"
+
+src_install() {
+	cd ${B}
+	cyginstall
+	rm -f ${D}${CROSS_BINDIR}/*.exe
+	rm -fr ${D}${CROSS_DATADIR}/{doc,gtk-doc,man}
+}
+
+KEEP_LA_FILES="none"
