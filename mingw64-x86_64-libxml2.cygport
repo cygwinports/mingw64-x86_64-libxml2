@@ -3,7 +3,7 @@ inherit gnome2 cross
 
 NAME="mingw64-x86_64-libxml2"
 VERSION=2.9.2
-RELEASE=1
+RELEASE=2
 CATEGORY="Devel"
 SUMMARY="GNOME XML library for Win64 toolchain"
 DESCRIPTION="This package does NOT contain cygwin binaries.  Instead, it
@@ -16,11 +16,12 @@ SRC_DIR="libxml2-${VERSION}"
 PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/libxml2.git/plain/libxml2-2.9.0-do-not-check-crc.patch
 	http://pkgs.fedoraproject.org/cgit/libxml2.git/plain/libxml2-2.9.2-catalog-revert.patch
+	2.9.2-zlib-ldflags.patch
 "
 
 DIFF_EXCLUDES="xmlversion.h setup.py"
 
-CYGCONF_ARGS="--enable-ipv6 --without-python"
+CYGCONF_ARGS="--enable-ipv6 --with-lzma --with-zlib --without-python"
 
 src_install() {
 	cd ${B}
