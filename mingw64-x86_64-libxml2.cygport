@@ -21,7 +21,7 @@ PATCH_URI="
 
 DIFF_EXCLUDES="xmlversion.h setup.py"
 
-CYGCONF_ARGS="--enable-ipv6 --with-lzma --with-zlib --without-python"
+CYGCONF_ARGS="--enable-ipv6 --with-zlib --without-python"
 
 src_install() {
 	cd ${B}
